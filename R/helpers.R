@@ -3,6 +3,6 @@
 
 helpers <- function(){
   library(devtools)
-  install_github("k8hertweck/tcgaHelpers")
+  install_github("k8hertweck/tcgaHelpers", force = TRUE)
   library(tcgaHelpers)
 }

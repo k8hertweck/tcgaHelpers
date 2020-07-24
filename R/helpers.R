@@ -1,4 +1,4 @@
-# Extract data from latinx and non-latinx patients who are also white
+# Reinstall and load this package (useful after updates have been made)
 #
 
 helpers <- function(){

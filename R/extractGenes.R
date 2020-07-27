@@ -6,10 +6,12 @@ extractGenes <- function(fpkm, meta, genes) {
   fpkmDat <- as.data.frame(assays(fpkm)[[1]])
   # select only desired genes
   fpkmGene <- as.data.frame(t(filter(fpkmDat,
-                                     rownames(fpkmDat) %in% genes$ensembl_gene_id)))
-  # replace gene column names
-  rename_with(fpkmGene, ~ genes$external_gene_name[match(., genes$ensembl_gene_id)])
-  # bind metadata to gene expression data
-  fpkmGene <- full_join(meta, fpkmGene, by="barcode")
+                                     rownames(fpkmDat) %in% genes$ensembl_gene_id))) %>%
+    # replace gene column names
+    rename_with(~ genes$external_gene_name[match(., genes$ensembl_gene_id)]) %>%
+    # convert rownames to column
+    rownames_to_column("barcode") %>%
+    # bind metadata to gene expression data
+    full_join(., meta, by="barcode")
   return(fpkmGene)
 }

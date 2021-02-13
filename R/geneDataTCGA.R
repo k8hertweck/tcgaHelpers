@@ -13,5 +13,5 @@ geneDataTCGA <- function(tcga_proj, path) {
   fpkm <- GDCprepare(query_fpkm, directory = path)
 
   # save imported object to file
-  save(fpkm, file=paste0(path, "fpkm", tcga_proj, ".RData"))
+  saveRDS(fpkm, file=paste0(path, "fpkm", tcga_proj, ".RDS"))
 }

@@ -4,7 +4,7 @@
 geneDataTCGA <- function(tcga_proj, path) {
   filename <- paste0(path, "fpkm", tcga_proj, ".RDS")
   if (file.exists(filename)) {
-    load(filename)
+    fpkm <- readRDS(filename)
   } else {
   # identify desired data
   query_fpkm <- GDCquery(project = tcga_proj,
@@ -19,4 +19,5 @@ geneDataTCGA <- function(tcga_proj, path) {
   # save imported object to file
   saveRDS(fpkm, file=filename)
   }
+  return(fpkm)
 }
